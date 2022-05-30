@@ -19,7 +19,7 @@ describe('Tests for poductsModel layer', () => {
     });
   })
 
-  describe('Tests if get product by id', () => {
+  describe('Tests fn get product by id', () => {
     before(() => {
       sinon.stub(connection, 'execute').resolves([[]]);
     });
