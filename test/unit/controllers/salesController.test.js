@@ -1,5 +1,5 @@
 const sinon = require('sinon');
-const { express, expect } = require('chai');
+const { expect } = require('chai');
 const salesService = require('../../../services/salesService');
 const salesController = require('../../../controllers/salesController');
 
@@ -44,7 +44,7 @@ describe('Tests for salesController', () => {
     });
 
     it('return code 404 and message "Sale not found"', async () => {
-      await salesController.getsaleById(request, response);
+      await salesController.getSalesById(request, response);
       expect(response.status.calledWith(404)).to.be.equal(true);
       expect(response.json.calledWith({ message: 'Sale not found' })).to.be.equal(true);
     });
@@ -57,15 +57,15 @@ describe('Tests for salesController', () => {
 
     before(() => {
       sinon.stub(salesService, 'getSaleById').resolves(serviceResponse);
-      response.satus = sinon.stub().returns(response);
-      response.json = sinon.stub().returns;
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns();
       request.params = { id: 1 };
     });
     after(() => {
       salesService.getSaleById.restore();
     });
 
-    it('Return an array with the right data and code200', async () => {
+    it('Return an array with the right data and code 200', async () => {
       await salesController.getSalesById(request, response);
       expect(response.status.calledWith(200)).to.be.equal(true);
       expect(response.json.calledWith(serviceResponse)).to.be.equal(true);
