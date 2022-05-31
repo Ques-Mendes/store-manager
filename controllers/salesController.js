@@ -9,10 +9,10 @@ const getSales = async (_req, res) => {
 const getSalesById = async (req, res) => {
   const { id } = req.params;
   const sales = await salesService.getSaleById(id);
-  if (sales.error) {
+  if (!sales.length) {
     return res.status(HTTP_NOT_FOUND).json({ message: sales.message });
   }
-  res.status(HTTP_OK).json(sales);
+  return res.status(HTTP_OK).json(sales);
 };
 
 module.exports = {
