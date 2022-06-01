@@ -5,7 +5,7 @@ const productsDTO = Joi.object({
     'string.min': '{{#label}} length must be at least 5 characters long',
   }),
   quantity: Joi.number().min(1).required().messages({
-    'string.min': '{{#label}} must be greater than or equal to 1',
+    'number.min': '{{#label}} must be greater than or equal to 1',
   }),
 }).messages({
   'any.required': '{{#label}} is required',

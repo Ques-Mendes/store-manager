@@ -6,15 +6,14 @@ const getProducts = async () => {
 };
 
 const getProductById = async (id) => {
-  const [product] = await productsModel.getById(id);
-  if (!product.length) {
+  const product = await productsModel.getById(id);
+  if (!product) {
     return {
       error: true,
       message: 'Product not found',
     };
   }
-  const [products] = product;
-  return products;
+  return product;
 };
 
 const createProduct = async ({ name, quantity }) => {
@@ -33,8 +32,22 @@ const createProduct = async ({ name, quantity }) => {
   };
 };
 
+const updateProduct = async (name, quantity, id) => {
+  await getProductById(id);
+  const product = await productsModel.updateProduct(name, quantity, id);
+  console.log('??', getProductById(id));
+  // if (!product) {
+  //   return {
+  //     error: true,
+  //     message: 'Product not found',
+  //   };
+  // }  
+  return product;
+};
+
 module.exports = {
   getProducts,
   getProductById,
   createProduct,
+  updateProduct,
 };
