@@ -17,7 +17,7 @@ const productsValidation = (req, res, next) => {
   if (error.message.includes('required')) {
     return res.status(400).json({ message: error.message });
   }
-  res.status(422).jso({ message: error.message });
+  res.status(422).json({ message: error.message });
 };
 
 module.exports = productsValidation;

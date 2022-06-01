@@ -2,10 +2,11 @@ const Joi = require('joi');
 
 const salesDTO = Joi.array().items(
   Joi.object({
-  quantity: Joi.number().min(1).required().messages({
+  quantity: Joi.number().min(1).label('quantity').required()
+  .messages({
     'string.min': '{{#label}}  must be greater than or equal to 1',
   }),
-  productId: Joi.number().required(),
+  productId: Joi.number().label('productId').required(),
   }).messages({
   'any.required': '{{#label}} is required',
   }),
