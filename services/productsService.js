@@ -32,18 +32,24 @@ const createProduct = async ({ name, quantity }) => {
   };
 };
 
-const updateProduct = async (name, quantity, id) => {
-  await getProductById(id);
-  const product = await productsModel.updateProduct(name, quantity, id);
-  console.log('??', getProductById(id));
+async function updateProduct({ name, quantity, id }) {
+  // const productId = await getProductById(id);  
+  await productsModel.updateProduct(name, quantity, id);
+  return {
+    id,
+    name,
+    quantity,
+  };  
+  // if (!productId.error) return product;
+
+  // console.log('??', product);
   // if (!product) {
   //   return {
   //     error: true,
   //     message: 'Product not found',
   //   };
-  // }  
-  return product;
-};
+  // }    
+}
 
 module.exports = {
   getProducts,
