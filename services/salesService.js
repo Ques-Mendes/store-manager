@@ -16,7 +16,12 @@ const getSaleById = async (id) => {
   return sale;
 };
 
+const createSale = async (sales) => {
+  console.log('???', sales);
+};
+
 module.exports = {
   getSales,
   getSaleById,
+  createSale,
 };
