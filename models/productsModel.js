@@ -7,12 +7,6 @@ const getById = async (id) => {
   return product[0];
 };
 
-// return {
-//   id,
-//   name,
-//   quantity,
-// };
-
 const getProductByName = (name) => connection.execute(
   'SELECT * FROM products WHERE name = ?', [name],
 );
@@ -25,12 +19,9 @@ const updateProduct = (name, quantity, id) => {
    connection.execute(
   'UPDATE products SET name = ?, quantity = ? WHERE id = ?', [name, quantity, id],
 );
-// return {
-//   id: Number(id),
-//   name, 
-//   quantity,
-// };
 };
+
+const deleteProduct = (id) => connection.execute('DELETE FROM products WHERE id = ?', [id]);
 
 module.exports = {
   getAll,
@@ -38,4 +29,5 @@ module.exports = {
   getProductByName,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

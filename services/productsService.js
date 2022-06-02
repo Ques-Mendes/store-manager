@@ -32,28 +32,27 @@ const createProduct = async ({ name, quantity }) => {
   };
 };
 
-async function updateProduct({ name, quantity, id }) {
-  // const productId = await getProductById(id);  
+const updateProduct = async ({ name, quantity, id }) => {
   await productsModel.updateProduct(name, quantity, id);
   return {
     id,
     name,
     quantity,
-  };  
-  // if (!productId.error) return product;
+  };    
+};
 
-  // console.log('??', product);
-  // if (!product) {
-  //   return {
-  //     error: true,
-  //     message: 'Product not found',
-  //   };
-  // }    
-}
+const deleteProduct = async (id) => {
+  const [product] = await productsModel.deleteProduct(id);
+  if (!product.affectedRows) {
+    return { error: true, message: 'Product not found' };
+  }
+  return { id, deleted: true };
+};
 
 module.exports = {
   getProducts,
   getProductById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };
