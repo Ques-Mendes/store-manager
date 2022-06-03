@@ -1,7 +1,7 @@
 const express = require('express');
 const productsController = require('../controllers/productsController');
 const productsValidation = require('../middlewares/productsValidation');
-// require('express-rescue');
+require('express-async-errors');
 
 const router = express.Router();
 
