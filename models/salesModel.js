@@ -23,7 +23,7 @@ const getById = (id) => connection.execute(
 const createSale = () => connection.execute('INSERT INTO sales (date) VALUES (NOW());');
   
 const createSalesProducts = (saleId, productId, quantity) => {
-   connection.execute(
+  connection.execute(
   'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
   [saleId, productId, quantity],
 );

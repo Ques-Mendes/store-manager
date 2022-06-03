@@ -17,8 +17,9 @@ const getSalesById = async (req, res) => {
 
 const createSale = async (req, res) => {
   const saleCreated = await salesService.createSale(req.body);
-  if (!saleCreated) {
-    return res.status(400).json({ message: saleCreated.message });
+  console.log('salecreated0', saleCreated);
+  if (saleCreated.error) {
+    return res.status(400).json({ message: saleCreated.error });
   }
   res.status(201).json(saleCreated);
 };

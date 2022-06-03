@@ -20,11 +20,11 @@ const createSale = async (sales) => {
   const saleId = await salesModel.createSale();
   const [{ insertId }] = saleId;
   await Promise.all(sales.map(({ productId, quantity }) => salesModel.createSalesProducts(
-    saleId, productId, quantity,
+    insertId, productId, quantity,
   )));   
   return {
     id: insertId,
-    itemSold: sales,
+    itemsSold: sales,
   };
   };
 
