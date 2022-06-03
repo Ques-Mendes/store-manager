@@ -55,6 +55,45 @@ describe('Tests for productService layer', () => {
         expect(response).to.be.an('object');
         expect(response).to.includes.all.keys('id', 'name', 'quantity');
       });
+    });    
+  });
+
+  describe('Test fn create product', () => {
+    describe('When product already exists', () => {
+
+      before(() => {
+        sinon.stub(productsModel, 'getProductByName').resolves([[{}, {}], []])
+        sinon.stub(productsModel, 'getProductByName').resolves([{ insertId: 1 }]);
+      });
+      after(() => {
+        productsModel.getProductByName.restore();
+        productsModel.createProduct.restore();
+      });
+
+      it('Return an obj with error messase "Product already exists"', async () => {
+        const received = { name: 'name', quantity: 10 };
+        const response = await productsService.createProduct(received);
+        expect(response).to.be.an('object');
+      });
     });
   });
+
+    describe('Test fn update product', () => {
+    describe('When id is found', () => {
+
+      before(() => {
+        sinon.stub(productsModel, 'updateProduct').resolves([[{}, {}], []])
+      });
+      after(() => {
+        productsModel.updateProduct.restore();
+      });
+
+      it('Return the rigth data', async () => {
+        const received = { name: 'name', quantity: 10, id: 1 };
+        const response = await productsService.updateProduct(received);
+        expect(response).to.be.an('object');
+      });
+    });
+  });
+  
 });
