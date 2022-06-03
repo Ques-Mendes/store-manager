@@ -32,4 +32,60 @@ describe('Tests for poductsModel layer', () => {
     expect(response).to.be.an('promise');
     });
   });
+
+  describe('Tests fn get product by name', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves([[]]);
+    });
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Return the rigth data', () => {
+    const response = productsModel.getProductByName(1);
+    expect(response).to.be.an('promise');
+    });
+  });
+
+  describe('Tests fn to create product', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves([[]]);
+    });
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Return the rigth data', () => {
+    const response = productsModel.createProduct('name', 'quantity');
+    expect(response).to.be.an('promise');
+    });
+  });
+
+  describe('Tests fn to update product', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves([[]]);
+    });
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Return the rigth data', () => {
+    const response = productsModel.updateProduct('id', 'name', 'quantity');
+    expect(response).to.be.an('promise');
+    });
+  });
+
+   describe('Tests fn to delete product', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves([[]]);
+    });
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Return the rigth data', () => {
+    const response = productsModel.deleteProduct(id);
+    expect(response).to.be.an('promise');
+    });
+  });
 })
