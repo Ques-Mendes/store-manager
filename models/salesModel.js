@@ -29,9 +29,17 @@ const createSalesProducts = (saleId, productId, quantity) => {
 );
 };
 
+const updateSale = (quantity, saleId, productId) => {
+  connection.execute(
+  'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',  
+  [quantity, saleId, productId],
+);
+};
+
 module.exports = {
   getAll,
   getById,
   createSale,
   createSalesProducts,
+  updateSale,
 };

@@ -16,16 +16,23 @@ const getSalesById = async (req, res) => {
 };
 
 const createSale = async (req, res) => {
-  const saleCreated = await salesService.createSale(req.body);
-  console.log('salecreated0', saleCreated);
-  if (saleCreated.error) {
-    return res.status(400).json({ message: saleCreated.error });
-  }
+  const saleCreated = await salesService.createSale(req.body);  
   res.status(201).json(saleCreated);
+};
+
+const updateSale = async (req, res) => {
+  const { id } = req.params;
+  // const sales = req.body;
+  const saleUpdated = await salesService.updateSale(id, req.body);
+  if (saleUpdated.error) {
+    return res.status(HTTP_NOT_FOUND).json({ message: saleUpdated.message });
+  }
+  res.status(200).json(saleUpdated);
 };
 
 module.exports = {
   getSales,
   getSalesById,
   createSale,
+  updateSale,
 };
