@@ -142,7 +142,7 @@ describe('Tests productController', () => {
     const response = {};
     const serviceResponseError = {
       error: true,
-      message: 'Product not found',
+      message: "Product not found",
     };
 
     before(() => {

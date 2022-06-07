@@ -41,7 +41,7 @@ describe('Tests for productService layer', () => {
 
     describe('when id is found', () => {
 
-      const product = { "id": 1, "name": "productX", "quantity": 2 };
+      const product = { "id": 1, "name": "product A", "quantity": 10 };
       before(() => {
         sinon.stub(productsModel, 'getById').resolves([[product], []]);
       });
@@ -63,11 +63,9 @@ describe('Tests for productService layer', () => {
 
       before(() => {
         sinon.stub(productsModel, 'getProductByName').resolves([[{}, {}], []])
-        sinon.stub(productsModel, 'getProductByName').resolves([{ insertId: 1 }]);
       });
       after(() => {
         productsModel.getProductByName.restore();
-        productsModel.createProduct.restore();
       });
 
       it('Return an obj with error messase "Product already exists"', async () => {
