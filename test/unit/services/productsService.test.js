@@ -24,15 +24,14 @@ describe('Tests for productService layer', () => {
     describe('when id is not found', () => {
 
       before(() => {
-        sinon.stub(productsModel, 'getById').resolves([[], []]);
+        sinon.stub(productsModel, 'getById').resolves(undefined);
       });
       after(() => {
         productsModel.getById.restore();
       });
 
       it('Return an object with error message "Product not found"', async () => {
-        const id = 1;
-        const response = await productsService.getProductById(id);
+        const response = await productsService.getProductById(1);
         expect(response).to.be.an('object');
         expect(response).to.includes.all.keys('error', 'message');
         expect(response.message).to.be.equal('Product not found');
@@ -41,17 +40,17 @@ describe('Tests for productService layer', () => {
 
     describe('when id is found', () => {
 
-      const product = { "id": 1, "name": "product A", "quantity": 10 };
+      const product = { "id": 1, "name": "produto A", "quantity": 10 };
       before(() => {
-        sinon.stub(productsModel, 'getById').resolves([[product], []]);
+        sinon.stub(productsModel, 'getById').resolves(product);
       });
       after(() => {
         productsModel.getById.restore();
       });
 
-      it('Return an object with the right data', async () => {
-        const id = 1;
-        const response = await productsService.getProductById(id);
+      it('Return an object with "id", "name", and "quantity"', async () => {
+        const ID = 1;
+        const response = await productsService.getProductById(ID);
         expect(response).to.be.an('object');
         expect(response).to.includes.all.keys('id', 'name', 'quantity');
       });

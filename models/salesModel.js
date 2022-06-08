@@ -20,21 +20,19 @@ const getById = (id) => connection.execute(
   WHERE S.ID = ?`, [id],
 );
 
-const createSale = () => connection.execute('INSERT INTO sales (date) VALUES (NOW());');
+const createSale = () => connection.execute('INSERT INTO sales (date) VALUES (now());');
   
-const createSalesProducts = (saleId, productId, quantity) => {
+const createSalesProducts = (saleId, productId, quantity) => 
   connection.execute(
-  'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+  'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
   [saleId, productId, quantity],
 );
-};
 
-const updateSale = (quantity, saleId, productId) => {
+const updateSale = (quantity, saleId, productId) => 
   connection.execute(
-  'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',  
+  'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?;',  
   [quantity, saleId, productId],
 );
-};
 
 module.exports = {
   getAll,

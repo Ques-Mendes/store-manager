@@ -94,9 +94,9 @@ describe('Tests for salesController', () => {
       salesService.createSale.restore();
     });
 
-    it('Return an array with sales and staus 200', async () => {
+    it('Return an array with sales and staus 201', async () => {
       await salesController.createSale(request, response);
-      expect(response.status.calledWith(200)).to.be.equal(true);
+      expect(response.status.calledWith(201)).to.be.equal(true);
       expect(response.json.calledWith(serviceResponse)).to.be.equal(true);
     });
   });
@@ -114,6 +114,7 @@ describe('Tests for salesController', () => {
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns();
       request.body = [{ "productId": 3, "quantity": 42 }];
+      request.params = { id: 1 };
     });
     after(() => {
       salesService.updateSale.restore();

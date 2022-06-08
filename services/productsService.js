@@ -33,7 +33,10 @@ const createProduct = async ({ name, quantity }) => {
 };
 
 const updateProduct = async ({ name, quantity, id }) => {
-  await productsModel.updateProduct(name, quantity, id);
+  const [product] = await productsModel.updateProduct(name, quantity, id);
+  if (!product.affectedRows) {
+    return { error: true, message: 'Product not found' };
+  }
   return {
     id,
     name,

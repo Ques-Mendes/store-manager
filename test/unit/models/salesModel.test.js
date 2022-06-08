@@ -58,12 +58,9 @@ describe('Tests for salesModel layer', () => {
 
     it('Return the rigth data', () => {
       const response = salesModel.createSalesProducts(1, 2, 10);
-      expect(response).to.be.an('promise');
-      
-      const queryExpected = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);';
-      const paramsExpected = [1, 2, 10];
-
-      expect(connection.execute.calledWith(queryExpected, paramsExpected)).to.be.equal(true);  
+      expect(response).to.be.an('promise'); 
+      // expect(response[0]).to.be.an('object');  
+      expect(connection.execute.calledWith('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',[1, 2, 10])).to.be.equal(true);  
     });
   });
 
@@ -79,7 +76,7 @@ describe('Tests for salesModel layer', () => {
       const id = 1;
       const productId = 2;
       const quantity = 10;
-      const response = salesModel.updateSale(id, productId, quantity);
+      const response = salesModel.updateSale(quantity, id, productId);
       expect(response).to.be.an('promise');
 
       const queryExpected = 'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?;';

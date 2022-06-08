@@ -25,7 +25,7 @@ const updateSale = async (req, res) => {
   // const sales = req.body;
   const saleUpdated = await salesService.updateSale(id, req.body);
   if (saleUpdated.error) {
-    return res.status(HTTP_NOT_FOUND).json({ message: saleUpdated.message });
+    return res.status(404).json({ message: saleUpdated.message });
   }
   res.status(200).json(saleUpdated);
 };

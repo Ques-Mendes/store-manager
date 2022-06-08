@@ -71,7 +71,7 @@ describe('Tests for poductsModel layer', () => {
 
     it('Return the rigth data', () => {
     const response = productsModel.updateProduct('id', 'name', 'quantity');
-    expect(response).to.be.an('promise');
+    expect(response).to.be.a('promise');
     });
   });
 
@@ -84,7 +84,7 @@ describe('Tests for poductsModel layer', () => {
     });
 
     it('Return the rigth data', () => {
-    const response = productsModel.deleteProduct(id);
+    const response = productsModel.deleteProduct('id');
     expect(response).to.be.an('promise');
     });
   });

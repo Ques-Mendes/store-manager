@@ -15,11 +15,10 @@ const createProduct = (name, quantity) => connection.execute(
   'INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity],
 );
 
-const updateProduct = (name, quantity, id) => { 
+const updateProduct = (name, quantity, id) => 
    connection.execute(
   'UPDATE products SET name = ?, quantity = ? WHERE id = ?', [name, quantity, id],
 );
-};
 
 const deleteProduct = (id) => connection.execute('DELETE FROM products WHERE id = ?', [id]);
 

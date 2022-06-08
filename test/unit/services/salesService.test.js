@@ -82,7 +82,7 @@ describe('Tests for saleService layer', () => {
     it('Return an obj with the rigth data', async () => {
       const response = await salesService.createSale(sales);
       expect(response).to.be.an('object');
-      expect(response).to.includes.all.keys('id', itemsSold);
+      expect(response).to.includes.all.keys('id', 'itemsSold');
       expect(response.id).to.be.equal(1);
       expect(response.itemsSold).to.be.equal(sales);
     })      
@@ -116,7 +116,7 @@ describe('Tests for saleService layer', () => {
       ]
 
       before(() => {
-        sinon.stub(salesModel, 'getById').resolves([[], []]);
+        sinon.stub(salesModel, 'getById').resolves([[{}], []]);
         sinon.stub(salesModel, 'updateSale').resolves([{}]);
       });
       after(() => {
